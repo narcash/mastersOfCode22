@@ -29,6 +29,7 @@
 // console.log(y);
 // console.log(typeof y);
 // console.log(y.toPrecision(5));
+/**
 
 const x = 4;
 const y = '16';
@@ -36,3 +37,4 @@ const z = x + y;
 
 console.log(z);
 console.log(typeof z);
+ */
