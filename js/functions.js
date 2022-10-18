@@ -33,7 +33,34 @@ const printBonus = function(dept1AverSales, dept2AverSales) {
 }
 printBonus(dept1AverSales1, dept2AverSales1);
 printBonus(dept1AverSales2, dept2AverSales2);
-*/
+
 
 // Array Methods
 
+const numbers = [25, 54, 10, 4, 17];
+ let result;
+
+ result = numbers.length;
+ result = Array.isArray(numbers);
+ result = numbers.indexOf(17);
+ result = numbers.push(18);
+ result = numbers.pop();
+
+ result = numbers.unshift(0, 12);
+ result = numbers.shift();
+ result = numbers.push(11, 19, 20);
+ result = numbers.reverse();
+ result = numbers.concat(result);
+
+
+
+console.log(numbers);
+ console.log(result);
+
+ */
+
+ const calculateTips = bill => bill < 20 ? bill * 0.2 : bill * 0.15;
+ const bills = [11, 20, 47];
+ const tips = [calculateTips(bills[0]), calculateTips(bills[1]), calculateTips(bills[2])];
+ const totalBills = [bills[0] + tips[0],bills[1] + tips[1],bills[2] + tips[2]];
+ console.log(bills, tips, totalBills);
