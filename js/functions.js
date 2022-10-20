@@ -71,18 +71,18 @@ console.log(numbers);
 // 46 Objects. Dot and bracket notation
 
 
-const myObj = {
-    name: 'Nar',
-    lastName: 'Mir',
-    birthYear: 1990,
-    job: 'programmer',
-    hasCar: true
-};
-console.log(myObj.name);
-console.log(myObj['name']);
+// const myObj = {
+//     name: 'Nar',
+//     lastName: 'Mir',
+//     birthYear: 1990,
+//     job: 'programmer',
+//     hasCar: true
+// };
+// console.log(myObj.name);
+// console.log(myObj['name']);
 
-const baseName = 'Name';
-console.log(myObj['last' + baseName]);
+// const baseName = 'Name';
+// console.log(myObj['last' + baseName]);
 
 // const userInput = prompt('What do you want to know about me? Choose name, lastName, birthYear, job, hasCar');
 
@@ -93,14 +93,47 @@ console.log(myObj['last' + baseName]);
 // }
 //  creatr new properties
 
-const tg = 'telegram'
-myObj.location = 'Almaty';
-myObj[tg] = '@narcash';
+// const tg = 'telegram'
+// myObj.location = 'Almaty';
+// myObj[tg] = '@narcash';
 
-console.log(myObj);
-// chellange
-console.log(`${myObj.name} was born in ${myObj.birthYear} and his lastname is ${myObj['lastName']}`);
-
-
+// console.log(myObj);
+// // chellange
+// console.log(`${myObj.name} was born in ${myObj.birthYear} and his lastname is ${myObj['lastName']}`);
 
 
+const myObj = {
+    name: 'Nar',
+    lastName: 'Mir',
+    birthYear: 1990,
+    job: 'programmer',
+    hasCar: true,
+    // calcAge: function(birthYear) {
+    //     return 2022 - birthYear;
+    // }
+    // calcAge: function() {
+    //     // console.log(this.job);
+    //     return 2022 - this.birthYear;
+    // }
+
+    calcAge: function() {
+        // console.log(this.job);
+        this.age = 2022 - this.birthYear;
+        return 2022 - this.birthYear;
+        // console.log(this);
+    },
+    // getSummary: function() {
+    //     console.log(`${myObj.name} is ${myObj.age} years old and he's job is ${myObj.job}. And he has a driver license`);
+    // },
+    getSummary: function() {
+        return `${myObj.name} is ${this.calcAge()} - years old ${this.job}. And he has ${this.hasCar ? 'a' : 'no'} driver license`;
+    }
+};
+console.log(myObj.calcAge());
+
+// console.log(myObj.age);
+console.log(myObj.getSummary());
+
+// console.log(myObj.age);
+// console.log(myObj.age);
+// console.log(myObj['age']);
