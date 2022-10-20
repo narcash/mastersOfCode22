@@ -57,10 +57,50 @@ const numbers = [25, 54, 10, 4, 17];
 console.log(numbers);
  console.log(result);
 
- */
+ 
 
  const calculateTips = bill => bill < 20 ? bill * 0.2 : bill * 0.15;
  const bills = [11, 20, 47];
  const tips = [calculateTips(bills[0]), calculateTips(bills[1]), calculateTips(bills[2])];
  const totalBills = [bills[0] + tips[0],bills[1] + tips[1],bills[2] + tips[2]];
  console.log(bills, tips, totalBills);
+ */
+
+
+
+// 46 Objects. Dot and bracket notation
+
+
+const myObj = {
+    name: 'Nar',
+    lastName: 'Mir',
+    birthYear: 1990,
+    job: 'programmer',
+    hasCar: true
+};
+console.log(myObj.name);
+console.log(myObj['name']);
+
+const baseName = 'Name';
+console.log(myObj['last' + baseName]);
+
+// const userInput = prompt('What do you want to know about me? Choose name, lastName, birthYear, job, hasCar');
+
+// if(myObj[userInput]) {
+//     console.log(myObj[userInput]);
+// } else {
+//     console.log('this property does not exist! Choose name, lastName, birthYear, job, hasCar');
+// }
+//  creatr new properties
+
+const tg = 'telegram'
+myObj.location = 'Almaty';
+myObj[tg] = '@narcash';
+
+console.log(myObj);
+// chellange
+console.log(`${myObj.name} was born in ${myObj.birthYear} and his lastname is ${myObj['lastName']}`);
+
+
+
+
