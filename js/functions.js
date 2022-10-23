@@ -64,7 +64,7 @@ console.log(numbers);
  const tips = [calculateTips(bills[0]), calculateTips(bills[1]), calculateTips(bills[2])];
  const totalBills = [bills[0] + tips[0],bills[1] + tips[1],bills[2] + tips[2]];
  console.log(bills, tips, totalBills);
- */
+ 
 
 
 
@@ -137,3 +137,43 @@ console.log(myObj.getSummary());
 // console.log(myObj.age);
 // console.log(myObj.age);
 // console.log(myObj['age']);
+*/
+
+// 48
+
+const jack = {
+    firtsName: 'Jack',
+    lastName: 'White',
+    weight: 79,
+    height: 1.7,
+    calcBMI: function() {
+        this.bmi = this.weight / this.height ** 2;
+        return this.bmi; 
+    }
+};
+const mike = {
+    firstName: 'Mike',
+    lastName: 'Black',
+    weight: 51,
+    height: 1.93,
+    calcBMI: function() {
+        this.bmi = this.weight / this.height ** 2;
+        return this.bmi; 
+    }
+};
+
+console.log(~~(jack.calcBMI()));
+console.log(~~(jack.bmi));
+
+console.log(~~(mike.calcBMI()));
+console.log(~~(mike.bmi));
+
+console.log(`${mike.firstName}'s BMI is ${~~(mike.bmi)}`);
+
+if(jack.bmi > mike.bmi) {
+    console.log(`${jack.firtsName} ${jack.lastName} BMI (${~~(jack.bmi)}) is higher than ${mike.firstName} ${mike.lastName} (${~~(mike.bmi)})!`);
+} else if (jack.bmi < mike.bmi) {
+    console.log(`${mike.firstName} ${mike.lastName} BMI (${mike.bmi}) is higher than ${jack.firstName} ${jack.lastName} (${jack.bmi})!`);
+} else {
+    console.log(`${mike.firstName} ${mike.lastName} BMI (${mike.bmi}) and ${jack.firstName} ${jack.lastName} (${jack.bmi}) are equal!`);
+}
