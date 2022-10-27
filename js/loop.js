@@ -102,7 +102,7 @@ while(diceNumber !== 6) {
     diceNumber = ~~((Math.random() * 6) + 1);
     console.log(`Dice number after random creation inside the loop: ${diceNumber}`);
 }
-*/
+
 
 // 55 loop Task
 
@@ -131,3 +131,84 @@ console.log(calculateAverage([1, 2, 3]));
 console.log(calculateAverage(totals));
 console.log(calculateAverage(bills));
 console.log(calculateAverage(tips));
+
+
+// 62
+const calculateHumidities = function (humidities) {
+  let max = humidities[0];
+  let min = humidities[0];
+  for (let i = 1; i < humidities.length; i++) {
+    const currentHumidity = humidities[i];
+    if (currentHumidity !== "number") continue;
+    if (currentHumidity > max) {
+      max = currentHumidity;
+    }
+    if (currentHumidity < min) {
+      min = currentHumidity;
+    }
+  }
+  console.log(min, max);
+};
+calculateHumidities([1, 0, 14, 5, -5, 17]);
+
+
+// 64 breakpoints
+const celciusToKelvin = function () {
+  const measurement = {
+    type: "temp",
+    unit: "celcius",
+    // value: +prompt("Temperature in Celcius"),
+    value: 35,
+  };
+  //   console.log(measurement);
+  //   console.table(measurement);
+  //   console.log(measurement.value);
+  //   console.warn(measurement.value);
+  //   console.error(measurement.value);
+
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+console.log(celciusToKelvin());
+
+// Debugging
+const calculateHumiditiesAmplitudeTwoArrays = function (h1, h2) {
+  const humidities = h1.concat(h2);
+  console.log(humidities);
+  let max = humidities[0];
+  let min = humidities[0];
+  for (let i = 1; i < humidities.length; i++) {
+    const currentHumidity = humidities[i];
+    if (currentHumidity !== "number") continue;
+    if (currentHumidity > max) {
+      max = currentHumidity;
+    }
+    if (currentHumidity < min) {
+      min = currentHumidity;
+    }
+  }
+  console.log(min, max);
+  return max - min;
+};
+const amplitude = calculateHumiditiesAmplitudeTwoArrays(
+  [1, 20, 50],
+  [23, 48, 79]
+);
+console.log(amplitude);
+
+*/
+// 66 Dev Solution
+
+const data1 = [49, 51, 63];
+const data2 = [31, 29, 43, 58, 52];
+
+const printHumiditiesForecast = function (arr) {
+  let str = "... ";
+  for (let i = 0; i < arr.length; i++) {
+    str = str + `${arr[i]}% in ${i + 1} days ... `;
+  }
+  console.log(str);
+};
+
+printHumiditiesForecast(data1);
+printHumiditiesForecast(data2);
