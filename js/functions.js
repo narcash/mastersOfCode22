@@ -1,3 +1,4 @@
+"use strict";
 /*** 
 
 const getAverage = (x, y, z) => (x + y + z) / 3;
@@ -137,7 +138,7 @@ console.log(myObj.getSummary());
 // console.log(myObj.age);
 // console.log(myObj.age);
 // console.log(myObj['age']);
-*/
+
 
 // 48
 
@@ -177,3 +178,47 @@ if(jack.bmi > mike.bmi) {
 } else {
     console.log(`${mike.firstName} ${mike.lastName} BMI (${mike.bmi}) and ${jack.firstName} ${jack.lastName} (${jack.bmi}) are equal!`);
 }
+
+// 100 Regular and Arrow Function
+const user1990 = {
+  firstName: "Nar",
+  birthYear: 1990,
+  getAge: function () {
+    console.log(this);
+    console.log(2022 - this.birthYear);
+    // Old approach
+    // const self = this;
+    // const isAdult = function () {
+    //   console.log(self);
+    //   console.log(2022 - self.birthYear >= 18);
+    // };
+    // New
+    const isAdult = () => {
+      console.log(this);
+      console.log(2022 - this.birthYear >= 18);
+    };
+    isAdult();
+  },
+  sayGreeting: function () {
+    console.log(`Hello ${this.firstName}`);
+  },
+};
+user1990.sayGreeting();
+user1990.getAge();
+*/
+// 101 Primitives and Refferencts Types
+let a = 1;
+let b = a;
+a = 2;
+console.log(a);
+console.log(b);
+
+const x = {
+  foo: "bar",
+  a: 1,
+};
+
+const y = x;
+y.a = 1;
+console.log("Object X: ", x);
+console.log("Object Y: ", y);

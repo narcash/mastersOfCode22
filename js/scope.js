@@ -43,7 +43,7 @@ const expSum = function (a, b) {
 };
 
 const arrSum = (a, b) => a + b;
- */
+
 
 // This
 // console.log(this);
@@ -74,3 +74,4 @@ const user1991 = {
 };
 user1991.getAge = user1990.getAge;
 user1991.getAge();
+ */
