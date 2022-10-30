@@ -31,7 +31,7 @@ const game = {
     ],
   ],
   score: "2:1",
-  scored: ["Kroos", "Benzema", "Mingueza"],
+  scored: ["Kroos", "Benzema", "Mingueza", "Mingueza"],
   date: "Apr 10th, 2021",
   odds: {
     team1: 1.48,
@@ -39,7 +39,7 @@ const game = {
     team2: 4.25,
   },
 };
-
+/*** 
 // 1
 const [players1, players2] = game.players;
 console.log(players1, players2);
@@ -72,5 +72,31 @@ const printGoals = function (...gamePlayers) {
 printGoals("Kroos", "Benzema", "Mingueza", "Ronaldo");
 printGoals(...game.scored);
 // 7
-team1 > team2 && console.log(`${game.team1} is more likly win`);
 team1 < team2 && console.log(`${game.team2} is more likly win`);
+team1 > team2 && console.log(`${game.team1} is more likly win`);
+*/
+for (const [index, name] of game.scored.entries()) {
+  // console.log(entry);
+  console.log(`Goal ${index + 1} - ${name}`);
+}
+
+// 2
+let oddSum = 0;
+let odds = Object.values(game.odds);
+for (const odd of Object.values(game.odds)) {
+  oddSum += odd;
+}
+const averageOdd = oddSum / odds.length;
+console.log(averageOdd);
+// 3
+for (const [teamName, odd] of Object.entries(game.odds)) {
+  // console.log(teamName, odd);
+  const multText = teamName === "draw" ? "draw" : `${game[teamName]} victory`;
+  console.log(`Rate for ${multText}: ${odd}`);
+}
+
+const goalScorers = {};
+for (const player of game.scored) {
+  goalScorers[player] ? goalScorers[player]++ : (goalScorers[player] = 1);
+}
+console.log(goalScorers);
