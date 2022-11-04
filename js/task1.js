@@ -1,4 +1,5 @@
-// "use strict";
+"use strict";
+/*** 
 const events = new Map([
   [19, "Goal"],
   [21, "Substitution"],
@@ -52,7 +53,7 @@ const game = {
     team2: 4.25,
   },
 };
-/*** 
+
 // 1
 const [players1, players2] = game.players;
 console.log(players1, players2);
@@ -87,11 +88,12 @@ printGoals(...game.scored);
 // 7
 team1 < team2 && console.log(`${game.team2} is more likly win`);
 team1 > team2 && console.log(`${game.team1} is more likly win`);
-*/
+
 for (const [index, name] of game.scored.entries()) {
   // console.log(entry);
   console.log(`Goal ${index + 1} - ${name}`);
 }
+*/
 /*** 
 // 2
 let oddSum = 0;
@@ -113,7 +115,7 @@ for (const player of game.scored) {
   goalScorers[player] ? goalScorers[player]++ : (goalScorers[player] = 1);
 }
 console.log(goalScorers);
-*/
+
 // 3.1
 
 // console.log(events.values());
@@ -132,3 +134,40 @@ for (const [key, value] of events) {
   const half = key <= 45 ? "FIRST" : "SECOND";
   console.log(`${half} HALF ${key}: ${value}`);
 }
+*/
+
+// 139
+// 4.1
+const survey = {
+  question: "What programming language would you like to learn?",
+  options: ["0: JavaScript", "1: Python", "2: Ruby", "3: Java", "4: C#"],
+  answers: new Array(5).fill(0),
+  logNewAnswer() {
+    const answer = +prompt(
+      `${this.question}\n${this.options.join("\n")}\n(Enter option Number)`
+    );
+    console.log(answer);
+    if (
+      typeof answer === "number" &&
+      answer >= 0 &&
+      answer < this.answers.length
+    ) {
+      this.answers[answer]++;
+    }
+    console.log(this.answers);
+    this.printResults();
+    this.printResults("string");
+  },
+  printResults(type = "array") {
+    if (type === "array") {
+      console.log(this.answers);
+    } else if (type === "string") {
+      console.log(`Survey results:${this.answers.join(", ")}.`);
+    }
+  },
+};
+// survey.logNewAnswer();
+survey.printResults("string");
+document
+  .querySelector("#survey")
+  .addEventListener("click", survey.logNewAnswer.bind(survey));
