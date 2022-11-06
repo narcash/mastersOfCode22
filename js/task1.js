@@ -134,7 +134,7 @@ for (const [key, value] of events) {
   const half = key <= 45 ? "FIRST" : "SECOND";
   console.log(`${half} HALF ${key}: ${value}`);
 }
-*/
+
 
 // 139
 // 4.1
@@ -171,3 +171,44 @@ survey.printResults("string");
 document
   .querySelector("#survey")
   .addEventListener("click", survey.logNewAnswer.bind(survey));
+
+// 152
+const catsJaneData1 = [4, 5, 3, 11, 6, 2, 4, 1, 5, 9];
+const catsJuliaData1 = [2, 4, 5, 1, 13, 2, 15, 8, 3, 7];
+const catsJaneData2 = [3, 5, 9, 14, 1, 2, 6, 8, 3, 10];
+const catsJuliaData2 = [8, 2, 10, 1, 2, 5, 6, 3, 1, 4];
+
+const veryfyCats = function (catsJane, catsJulia) {
+  const catsJaneCorrect = catsJaneData1.slice();
+  catsJaneCorrect.splice(0, 1);
+  catsJaneCorrect.splice(-1);
+  // console.log(catsJaneCorrect);
+  const cats = catsJaneCorrect.concat(catsJulia);
+  // console.log(cats);
+
+  cats.forEach(function (catAge, index) {
+    if (catAge >= 2) {
+      console.log(`Cat №${index + 1} is adult and he is ${catAge} years old!`);
+    } else {
+      console.log(`Cat №${index + 1} is kitty and he is ${catAge} years old!`);
+    }
+  });
+};
+
+veryfyCats(catsJaneData1, catsJuliaData1);
+
+const getAverageHumanAge = function (catAges) {
+  const humanAges = catAges.map((catAge) =>
+    catAge <= 2 ? catAge * 10 : catAge * 7
+  );
+  const adultCats = humanAges.filter((humanAge) => humanAge >= 18);
+  const getAverageHumanAge =
+    adultCats.reduce((acc, catAge) => acc + catAge, 0) / adultCats.length;
+
+  return getAverageHumanAge;
+};
+const getAverageHumanAge1 = getAverageHumanAge([13, 1, 14, 2, 4, 5]);
+const getAverageHumanAge2 = getAverageHumanAge([10, 1, 14, 2, 4, 5]);
+console.log(getAverageHumanAge1);
+console.log(getAverageHumanAge2);
+*/
