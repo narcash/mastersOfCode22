@@ -1,4 +1,5 @@
 "use strict";
+
 /*** 
 const events = new Map([
   [19, "Goal"],
@@ -197,18 +198,26 @@ const veryfyCats = function (catsJane, catsJulia) {
 
 veryfyCats(catsJaneData1, catsJuliaData1);
 
-const getAverageHumanAge = function (catAges) {
-  const humanAges = catAges.map((catAge) =>
-    catAge <= 2 ? catAge * 10 : catAge * 7
-  );
-  const adultCats = humanAges.filter((humanAge) => humanAge >= 18);
-  const getAverageHumanAge =
-    adultCats.reduce((acc, catAge) => acc + catAge, 0) / adultCats.length;
-
-  return getAverageHumanAge;
-};
+const getAverageHumanAge = (catAges) =>
+  catAges
+    .map((catAge) => (catAge <= 2 ? catAge * 10 : catAge * 7))
+    .filter((humanAge) => humanAge >= 18)
+    .reduce((acc, catAge, index, arr) => acc + catAge / arr.length, 0);
 const getAverageHumanAge1 = getAverageHumanAge([13, 1, 14, 2, 4, 5]);
 const getAverageHumanAge2 = getAverageHumanAge([10, 1, 14, 2, 4, 5]);
 console.log(getAverageHumanAge1);
 console.log(getAverageHumanAge2);
 */
+// const getAverageHumanAge = function (catAges) {
+//   const humanAges = catAges
+//     .map((catAge) => (catAge <= 2 ? catAge * 10 : catAge * 7))
+//     .filter((humaneAge) => humaneAge >= 18)
+//     .reduce((acc, humaneAge) => (acc + humaneAge) / 100, 0);
+//   return getAverageHumanAge;
+// };
+// const getAverageHumanAge1 = getAverageHumanAge([7, 3, 2, 4, 1, 15, 8, 1, 9, 2]);
+// const getAverageHumanAge2 = getAverageHumanAge([
+//   1, 16, 12, 4, 5, 1, 3, 11, 7, 2,
+// ]);
+// console.log(getAverageHumanAge1);
+// console.log(getAverageHumanAge2);
