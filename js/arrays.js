@@ -310,9 +310,69 @@ const withdrawlOver300 = accounts
   .flatMap((account) => account.transactions)
   .filter((trans) => trans <= -300).length;
 console.log(withdrawlOver300);
-*/
+
 const withdrawlOver300 = accounts
   .flatMap((account) => account.transactions)
   .reduce((acc, trans) => (trans <= -300 ? acc + 1 : acc), 0);
 
 console.log(withdrawlOver300);
+
+// Ex. 3
+
+const { depositTotal, withdrawalsTotal } = accounts
+  .flatMap((account) => account.transactions)
+  .reduce(
+    (acc, trans) => {
+      // trans > 0 ? (acc.depositTotal += trans) : (acc.withdrawalsTotal += trans);
+      acc[trans > 0 ? "depositTotal" : "withdrawalsTotal"] += trans;
+      // debugger;
+      return acc;
+    },
+    { depositTotal: 0, withdrawalsTotal: 0 }
+  );
+console.log(depositTotal, withdrawalsTotal);
+// console.log(depositTotal);
+
+// Ex. 4
+// работа с массивами в javascript -> Работа с Массивами в Javascript
+const text1 = "работа с массивами в javascript";
+const text2 = "работа с массивами в javascript ПРОСТЫМ языком для новичков";
+const text3 = "работа с массивами и строками в javascript";
+const text4 = "для работы с массивами и строками в javascript";
+const textToTitleCase = function (text) {
+  const exeptions = ["с", "в", "и", "для", "на", "по", "о"];
+  const capitalizeString = (word) => word[0].toUpperCase() + word.slice(1);
+  const titleCase = text
+    .toLowerCase()
+    .split(" ")
+    .map((word) => (exeptions.includes(word) ? word : capitalizeString(word)))
+    .join(" ");
+  return capitalizeString(titleCase);
+};
+console.log(textToTitleCase(text1));
+console.log(textToTitleCase(text2));
+console.log(textToTitleCase(text3));
+console.log(textToTitleCase(text4));
+// Math
+*/
+
+/*** Таймеры */
+
+// setTimeout()
+const ingridients = ["Туец", "Лосось"];
+const sushiTimer = setTimeout(
+  (ing1, ing2) =>
+    console.log(`Ваши суши доставлены! Ингридиенты: ${ing1}, ${ing2}`),
+  3000,
+  ...ingridients
+);
+console.log("waiting...");
+
+if (ingridients.includes("Тунец")) clearInterval(sushiTimer);
+
+// setInterval ()
+setInterval(function () {
+  const now = new Date();
+
+  console.log(now);
+}, 5000);
