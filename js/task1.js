@@ -234,7 +234,7 @@ console.log(getAverageHumanAge2);
 7. Создайте массив, содержащий кошек, которые едят нормальное количество еды (попробуйте повторно использовать условие, используемое в пункте 6).
 8. Создайте мелкую (shallow) копию массива cats и отсортируйте по свойству рекомендуемая порция еды по возрастанию (имейте в виду, что порции находятся внутри объектов массива).
  */
-
+/***
 const cats = [
   { catWeight: 3, foodWeight: 25, owners: ["Наташа"] },
   { catWeight: 6, foodWeight: 90, owners: ["Марина", "Алиса"] },
@@ -278,3 +278,4 @@ const catsCopy = cats
   .slice()
   .sort((x, y) => x.recommendedPortion - y.recommendedPortion);
 console.log(catsCopy);
+ */

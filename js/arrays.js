@@ -310,7 +310,7 @@ const withdrawlOver300 = accounts
   .flatMap((account) => account.transactions)
   .filter((trans) => trans <= -300).length;
 console.log(withdrawlOver300);
-*/
+
 const withdrawlOver300 = accounts
   .flatMap((account) => account.transactions)
   .reduce((acc, trans) => (trans <= -300 ? acc + 1 : acc), 0);
@@ -353,3 +353,26 @@ console.log(textToTitleCase(text1));
 console.log(textToTitleCase(text2));
 console.log(textToTitleCase(text3));
 console.log(textToTitleCase(text4));
+// Math
+*/
+
+/*** Таймеры */
+
+// setTimeout()
+const ingridients = ["Туец", "Лосось"];
+const sushiTimer = setTimeout(
+  (ing1, ing2) =>
+    console.log(`Ваши суши доставлены! Ингридиенты: ${ing1}, ${ing2}`),
+  3000,
+  ...ingridients
+);
+console.log("waiting...");
+
+if (ingridients.includes("Тунец")) clearInterval(sushiTimer);
+
+// setInterval ()
+setInterval(function () {
+  const now = new Date();
+
+  console.log(now);
+}, 5000);
