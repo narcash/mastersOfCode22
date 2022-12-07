@@ -31,8 +31,9 @@ const displayCountry = function (data, clasName = '') {
     </article>
     `;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
+/**
 //////////////////////////////////////////////////////
 // const getCountryData = function (countryName) {
 //   const request = new XMLHttpRequest();
@@ -98,6 +99,9 @@ const getCountryAndBorderCountries = function (countryName) {
     });
   });
 };
+/**
+ * 
+ 
 const getCountryData = function (countryName) {
   fetch(`https://restcountries.com/v3.1/name/${countryName}`)
     .then(reaponse => reaponse.json())
@@ -121,7 +125,7 @@ const getCountryData = function (countryName) {
 btn.addEventListener('click', function () {
   getCountryData('canada');
 });
-
+* /
 // getCountryAndBorderCountries('usa');
 
 // setTimeout(() => {
@@ -208,19 +212,19 @@ Promise.resolve('Done Promise 2').then(result => {
   console.log(result);
 });
 console.log('test ends');
-*/
+
 const lotteryPromise = new Promise(function (resolve, reject) {
   console.log('Происходит розыгрыш!');
   setTimeout(() => {
     if (Math.random() >= 0.5) {
-      resolve('You Win!');
+      resolve('You Win!:)');
     } else {
       reject(new Error('You Lose!:('));
     }
   }, 3000);
 });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
 // Promisifying
 const wait = function (seconds) {
@@ -229,7 +233,105 @@ const wait = function (seconds) {
   });
 };
 
-wait(3).then(() => {
-  console.log('Длительность ожидания 3 секунды');
-  return wait(2);
-});
+wait(1)
+  .then(() => {
+    console.log('past 1 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('past 2 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('past 3 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('past 4 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('past 5 sec');
+    return wait(1);
+  });
+
+Promise.resolve('Resolved').then((res = console.log(res)));
+Promise.reject(new Error('Rejected')).catch((err = console.log(err)));
+
+
+// Промисификация  API
+
+console.log('getting position');
+
+const getUserPositoon = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   e => reject(e)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getUserPositoon()
+//   .then(pos => console.log(pos))
+//   .catch(e => console.error(e));
+
+const displayUserCountry = function () {
+  getUserPositoon()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz${lat},${lng}?geoit=json`);
+    })
+    .then(response => {
+      if (!response.ok)
+        throw new Error(`Error w geocoords (error ${response.status})`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return getDataAndConvertToJSON(
+        `https://restcountries.com/v3.1/name/${data.country.toLowerCase()}`,
+        'country is not find'
+      );
+    })
+    .then(data => displayCountry(data[0]))
+    .catch(e => {
+      console.error(`${e}???`);
+      displayError(`something is error: ${e.message} Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    })
+    .catch(e => console.error(`${e.message} &&&`));
+};
+
+displayUserCountry();
+*/
+
+const getUserPositoon = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const getCountryData = async function (countryName) {
+  const userPosition = await getUserPositoon();
+  const { latitude: lat, longitude: lng } = userPosition.coords;
+  const geocodingResponse = await fetch(
+    `https://geocode.xyz${lat},${lng}?geoit=json`
+  );
+
+  const geocodingData = await geocodingResponse.json();
+  console.log(geocodingData);
+
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${countryName}`
+  );
+  const data = await response.json();
+  console.log(data);
+  displayCountry(data[0]);
+};
+console.log('sync code');
+getCountryData('usa');
