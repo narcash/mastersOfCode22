@@ -317,21 +317,25 @@ const getUserPositoon = function () {
 };
 
 const getCountryData = async function (countryName) {
-  const userPosition = await getUserPositoon();
-  const { latitude: lat, longitude: lng } = userPosition.coords;
-  const geocodingResponse = await fetch(
-    `https://geocode.xyz${lat},${lng}?geoit=json`
-  );
+  try {
+    const userPosition = await getUserPositoon();
+    const { latitude: lat, longitude: lng } = userPosition.coords;
+    const geocodingResponse = await fetch(
+      `https://geocode.xyz${lat},${lng}?geoit=json`
+    );
 
-  const geocodingData = await geocodingResponse.json();
-  console.log(geocodingData);
+    const geocodingData = await geocodingResponse.json();
+    console.log(geocodingData);
 
-  const response = await fetch(
-    `https://restcountries.com/v3.1/name/${countryName}`
-  );
-  const data = await response.json();
-  console.log(data);
-  displayCountry(data[0]);
+    const response = await fetch(
+      `https://restcountries.com/v3.1/name/${countryName}`
+    );
+    const data = await response.json();
+    console.log(data);
+    displayCountry(data[0]);
+  } catch (e) {
+    console.error(`${e} (())`);
+  }
 };
 console.log('sync code');
 getCountryData('usa');
